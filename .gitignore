@@ -33,7 +33,7 @@ node_modules
 .node_repl_history
 
 # User-specific stuff:
-./docker/image-auditor/.idea
-./docker/image-musician/.idea
-./docker/image-auditor/*.iml
-./docker/image-musician/*.iml
+docker/image-auditor/.idea
+docker/image-musician/.idea
+docker/image-auditor/*.iml
+docker/image-musician/*.iml
