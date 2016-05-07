@@ -5,4 +5,7 @@ MAINTAINER Sebastien Boson <sebastien.boson@heig-vd.ch> and Mathieu Urstein <mat
 COPY bin /opt/app/bin
 
 #
+EXPOSE 2205
+
+#
 ENTRYPOINT ["node", "/opt/app/bin/auditor.js"]

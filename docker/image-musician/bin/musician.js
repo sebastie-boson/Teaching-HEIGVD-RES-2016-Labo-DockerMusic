@@ -1,7 +1,7 @@
 //
 var protocol = require("./protocol");
 // to generate a random uuid
-var uuid = require("../node_modules/node-uuid");
+var uuid = require("node-uuid");
 
 // we use a a standard Node.js module to work with UDP
 var dgram = require("dgram");
@@ -30,14 +30,15 @@ function Musician(instrument) {
         sound = "boum-boum";
     }
     else {
-        sound = "not-defined";
+        sound = "undefined";
     }
 
     // we use v4 function for random uuid
     var playedInstrument = {
         uuid: uuid.v4(),
         instrument: this.instrument,
-        sound: sound
+        sound: sound,
+        date: new Date()
     };
 
     var payload = JSON.stringify(playedInstrument);
