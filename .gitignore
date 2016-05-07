@@ -33,10 +33,7 @@ node_modules
 .node_repl_history
 
 # User-specific stuff:
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-.idea/vcs.xml
-.idea/jsLibraryMappings.xml
-.idea
-*.iml
+./docker/image-auditor/.idea
+./docker/image-musician/.idea
+./docker/image-auditor/*.iml
+./docker/image-musician/*.iml

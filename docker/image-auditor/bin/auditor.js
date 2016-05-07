@@ -26,6 +26,8 @@ var server = net.createServer();
 
 //
 var players = {};
+//
+var playersTime = {};
 
 socket.bind(protocol.PROTOCOL_UDP_PORT, function() {
     console.log("Joining multicast group");
@@ -51,6 +53,10 @@ socket.on("message", function(msg, source) {
         //2016-04-27T05:20:50.731Z
         "activeSince" : player.date
     };
+
+    playersTime[player.uuid] = {
+        "lastActive" : new Date()
+    }
 });
 
 // it can react to events: 'listening', 'connection', 'close' and 'error'
@@ -59,14 +65,24 @@ socket.on("message", function(msg, source) {
 server.on("listening", callbackFunctionToCallWhenSocketIsBound);
 server.on("connection", callbackFunctionToCallWhenNewClientHasArrived);
 
-// we are ready, so let's ask the server to start listening on port 2205 with a localhost IPV4 address (127.0.0.1)
-server.listen(protocol.PROTOCOL_TCP_PORT, "localhost");
+// we are ready, so let's ask the server to start listening on port 2205
+server.listen(protocol.PROTOCOL_TCP_PORT);
 
 // This callback method is invoked after the socket has been bound and is in
 // listening mode. We don't need to do anything special.
 function callbackFunctionToCallWhenSocketIsBound() {
     console.log("The socket is bound and the TCP server is listening for connection requests.");
     console.log("Socket value: %j", server.address());
+
+    //
+    setInterval(function() {
+        for (var playerTimeKey in playersTime) {
+            if (new Date().setSeconds(new Date().getSeconds() - 5) > playersTime[playerTimeKey].lastActive) {
+                delete playersTime[playerTimeKey];
+                delete players[playerTimeKey];
+            }
+        }
+    }, 1000);
 }
 
 // This callback method is invoked after a client connection has been accepted.

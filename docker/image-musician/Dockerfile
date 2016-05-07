@@ -7,5 +7,5 @@ COPY node_modules/node-uuid /opt/app/node_modules/node-uuid
 # when we build the image, we copy all the javascript files in bin folder in the image file system
 COPY bin /opt/app/bin
 
-#
+# entrypoint of the program
 ENTRYPOINT ["node", "/opt/app/bin/musician.js"]

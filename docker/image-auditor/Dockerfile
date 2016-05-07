@@ -4,8 +4,8 @@ MAINTAINER Sebastien Boson <sebastien.boson@heig-vd.ch> and Mathieu Urstein <mat
 # when we build the image, we copy all the javascript files in bin folder in the image file system
 COPY bin /opt/app/bin
 
-#
+# for port connection
 EXPOSE 2205
 
-#
+# entrypoint of the program
 ENTRYPOINT ["node", "/opt/app/bin/auditor.js"]
