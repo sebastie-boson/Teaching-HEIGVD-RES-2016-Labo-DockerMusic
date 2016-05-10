@@ -4,6 +4,7 @@
 # This is a bit brutal (and will affect your system if you are running other
 # containers than those of the lab)
 #
+ 
 docker kill $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
